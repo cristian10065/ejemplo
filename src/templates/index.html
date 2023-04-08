@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pagina Principal</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="static/estilos.css">
+        
+
+    </head>
+    <body>
+        <h1 style="text-align:center">Bienvenidos</h1>
+        <form action="/guardar_persona" method="post">
+            <p style="text-align:center" for="Name">Nombre: 
+            <input type="text" name="nombre"></p>
+            <p style="text-align:center" for="Name">Apellido:
+            <input type="text" name="apellido"></p>
+            <p style="text-align:center" for="Name">Edad:
+            <input type="text" name="edad"></p>
+            <p style="text-align:center" for="Name">correo: 
+            <input type="text" name="correo"></p>
+            <p style="text-align:center" for="Name">Telefono: 
+            <input type="text" name="telefono"></p>
+            <p style="text-align:center"><button type="submit">Guardar Nueva Informacion</button></p>
+        </form>
+        <center>
+        </button><a href="/todos">Mostrar todos los registros</a></button>
+        </center>
+        <center>
+        </button><a href="/nombresc">Busqueda Nombres Con "c"</a></button>
+        </center>
+        <center>
+        </button><a href="/edad">Busqueda de las edades y organizarlos De Mayor A Menor</a></button>
+        </center>
+        <center>
+        </button><a href="/nombre">Busqueda Con un Nombre Especifico: "alan"</a></button>
+        </center>
+        <center>
+        </button><a href="/rango">Busqueda Desde una edad mayor a los 18 y menor a los 22 años</a></button>
+        </center>
+        <center>
+        </button><a href="/nombrevariables">Busqueda De Todos Los Nombres Que Tengan "cr"</a></button>
+        </center>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <h2 style="text-align:center">Registros</h2>
+        {% for persona in res %}
+        <hr>
+            <form action="/editar_persona/{{persona._id}}" method="post">
+                <p style="text-align:center" for="Name">Nombre: 
+                <input type="text" name="nombre" value="{{persona.nombre}}"></p>
+                <p style="text-align:center" for="Name">Apellido: 
+                <input type="text" name="apellido" value="{{persona.apellido}}"></p>
+                <p style="text-align:center" for="Name">Edad: 
+                <input type="text" name="edad" value="{{persona.edad}}"></p>
+                <p style="text-align:center" for="Name">Correo: 
+                <input type="text" name="correo" value="{{persona.correo}}"></p>
+                <p style="text-align:center" for="Name">Telefono: -
+                <input type="text" name="telefono" value="{{persona.telefono}}"></p>
+
+                <p style="text-align:center"><button type="submit">Actualizar</button></p>
+                <center>
+                    <a onclick="return confirm('¿Esta Seguro Que Deseas Eliminar Este Documento?')" href="{{ url_for('eliminar' , id_persona=persona._id)}}">Eliminar</a>
+                </center>
+                <hr>
+            </form>
+        <hr>
+        {% endfor %}
+
+    </body>
+</html>
